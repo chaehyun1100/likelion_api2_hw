@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">DevLog 시작하기</title>
+  <desc id="desc">주황색 배경 위의 DevLog 디자인 예시 썸네일</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#FB6C00"/><stop offset="1" stop-color="#E73F1E"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="1040" cy="90" r="180" fill="#FFDD9C" opacity=".28"/>
+  <circle cx="110" cy="590" r="230" fill="#fff" opacity=".09"/>
+  <rect x="120" y="112" width="960" height="406" rx="32" fill="#fff"/>
+  <rect x="178" y="180" width="102" height="102" rx="24" fill="#FFDD9C"/>
+  <text x="210" y="254" fill="#FB6C00" font-family="Arial, sans-serif" font-size="58" font-weight="700">D</text>
+  <text x="316" y="251" fill="#212529" font-family="Arial, sans-serif" font-size="72" font-weight="700">DevLog</text>
+  <rect x="178" y="328" width="600" height="24" rx="12" fill="#E9ECEF"/>
+  <rect x="178" y="378" width="470" height="20" rx="10" fill="#E9ECEF"/>
+  <rect x="178" y="438" width="126" height="40" rx="20" fill="#FFDD9C"/>
+  <rect x="320" y="438" width="104" height="40" rx="20" fill="#FFDD9C"/>
+</svg>
