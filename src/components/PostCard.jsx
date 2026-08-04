@@ -4,6 +4,8 @@ import * as S from "./PostCard.styled";
 
 // props.post = { id, title, content, thumbnail, tags, author, createdAt }
 function PostCard({ post }) {
+  if(!post) return null;
+  
   return (
     <S.Card to={`/posts/${post.id}`}>
       {/* 썸네일은 null 일 수 있으니 있을 때만 */}

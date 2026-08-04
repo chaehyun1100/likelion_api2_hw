@@ -13,10 +13,18 @@ function PostListPage() {
       // TODO: 게시글 목록을 불러와 posts에 저장
       // 요청 실패 시 에러 상태도 함께 처리
       // 제공된 환영 글(defaultPost)은 목록에서 계속 보이도록 처리합니당
+    try{
+      const posts = await getPosts();
+      setPosts([defaultPost, ...(posts || [])]);
+    } catch (err) {
+      console.log("에러",err);
+      setError("화면을 불러오지 못했어요")
+    }
     };
 
     fetchPosts();
   }, []);
+  
 
   return (
     <section>

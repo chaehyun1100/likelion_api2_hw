@@ -15,13 +15,26 @@ function PostEditPage() {
   useEffect(() => {
     const fetchPost = async () => {
       // TODO: 수정할 게시글을 불러와 initial에 저장하세요.
+    try {
+      const post = await getPost(postId);
+      setInitial(post);
+    } catch {
+      alert("게시글을 불러올 수 없습니다.");
+      navigate("/");
+    }
     };
 
     fetchPost();
-  }, [postId]);
+  }, [postId, navigate]);
 
   const handleUpdate = async (formData) => {
     // TODO: 게시글을 수정한 뒤 수정된 게시글의 상세 페이지로 이동하세요.
+  try {
+    await updatePost(postId, formData);
+    navigate(`/posts/${postId}`);
+  } catch {
+    alert("게시물 수정에 실패했습니다.");
+  }
   };
 
   if (!initial) return <S.StateText $error>글을 찾을 수 없어요.</S.StateText>;

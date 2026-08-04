@@ -10,6 +10,13 @@ function PostWritePage() {
   const handleCreate = async (formData) => {
     // TODO: 글을 작성한 뒤 서버가 돌려준 id를 이용해 상세 페이지로 이동하세요.
     // 작성 실패 시 사용자에게 알림 alert
+    try{
+      const newPost = await createPost(formData);
+      navigate(`/posts/${newPost.id}`);
+    } catch(err) {
+      console.error("실제 발생", err);
+      alert("글 작성에 실패했습니다.");
+    }
   };
 
   return (

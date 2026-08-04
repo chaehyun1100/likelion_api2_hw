@@ -17,15 +17,33 @@ function PostForm({ initial = {}, submitLabel = "작성하기", onSubmit }) {
     if (file) setPreview(URL.createObjectURL(file)); 
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
+    
     const formData = new FormData();
 
     // TODO: 입력받은 글 정보와 이미지 파일을 formData에 담기
     // tagsText는 쉼표를 기준으로 나눈 뒤 각각 "tags"라는 이름으로 추가
+    formData.append("title", title);
+    formData.append("content", content);
+    formData.append("author", author.trim() || "익명");
 
-    onSubmit(formData); // 완성한 formData를 부모에게 전달
+    if (tagsText) {
+      tagsText.split(",").forEach((tag) => {
+        formData.append("tags", tag.trim());
+      });
+    }
+
+    if (imageFile instanceof File) {
+      formData.append("thumbnail", imageFile);
+    }
+
+    try {
+      await onSubmit(formData); // 완성한 formData를 부모에게 전달
+    } catch(err) {
+      console.error(err)
+    }
+    
   };
 
   return (

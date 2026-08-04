@@ -24,6 +24,12 @@ function PostDetailPage() {
     const fetchPost = async () => {
       // TODO: postId에 해당하는 게시글을 불러와 post에 저장하세요.
       // 요청 실패 시 에러 상태도 함께 처리하세요.
+      try {
+        const data = await getPost(postId);
+        setPost(data);
+      } catch {
+        setError("게시글을 불러올 수 없습니다.");
+      }
     };
 
     fetchPost();
@@ -33,6 +39,12 @@ function PostDetailPage() {
     if (!window.confirm("이 글을 삭제할까요?")) return;
 
     // TODO: 현재 게시글을 삭제한 뒤 목록 페이지로 이동하세요.
+    try {
+      await deletePost(postId);
+      navigate("/");
+    } catch {
+      alert("삭제에 실패했습니다.")
+    }
   };
 
   if (error) return <C.StateText $error>{error}</C.StateText>;
