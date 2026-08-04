@@ -5,6 +5,7 @@ import { axiosInstance } from "./axiosInstance";
 
 export const getPosts = async () => {
     const res = await axiosInstance.get("/posts");
+    console.log("데이터:", res.data);
     return res.data;
 };
 
