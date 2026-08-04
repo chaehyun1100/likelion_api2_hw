@@ -3,20 +3,40 @@ import { getComments, createComment, deleteComment } from "../apis/commentApi";
 import { formatDate } from "../utils/date";
 import * as C from "../styles/common.styled";
 import * as S from "./CommentSection.styled";
+import { Navigate } from "react-router-dom";
 
 // 특정 게시글에 대한 댓글 조회 + 작성 폼입니다. 
 function CommentSection({ postId }) {
   const [comments, setComments] = useState([]);
   const [text, setText] = useState("");
 
+  useEffect(() => {
+    const fetchComments = async() => {
+      const data = await getComments(postId);
+      setComments(data);
+    };
 
+    fetchComments();
+  },{postId});
 
-  const handleAdd = async () => {
+  const handleAdd = async (e) => {
+    e.preventDefault();
 
+    if (!text.trim()) return;
+
+    const created = await createComment(postId, {
+      content: text.trim(),
+      author: "익명"
+    });
+
+    setComments((prev) => [...prev, created]);
+    setText("")
   };
 
   const handleDelete = async (commentId) => {
-
+    if(!window.confirm("댓글을 삭제할까요?")) return;
+    await deleteComment(commentId);
+    setComments((prev) => prev.filter((c) => c.id !== commentId))
   };
 
   return (

@@ -4,7 +4,7 @@ import { axiosInstance } from "./axiosInstance";
 // 글 작성/수정 요청은 이미지 파일을 포함할 수 있으므로 FormData로 전송합니다.
 
 export const getPosts = async () => {
-    const res = await axiosInstance.get("/posts/");
+    const res = await axiosInstance.get("/posts");
     return res.data;
 };
 
@@ -14,7 +14,7 @@ export const getPost = async (postId) => {
 };
 
 export const createPost = async (formData) => {
-    const res = await axiosInstance.post("/posts/", formData);
+    const res = await axiosInstance.post("/posts", formData);
     return res.data;
 };
 
